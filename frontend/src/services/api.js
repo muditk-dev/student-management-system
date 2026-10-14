@@ -17,7 +17,15 @@ async function request(endpoint, options = {}) {
   };
 
   try {
-    const response = await fetch(url, config);
+    const contentType = response.headers.get('content-type') || '';
+    if (contentType.includes('text/html') && url.startsWith('/api')) {
+      const configError = new Error(
+        'Backend API URL (VITE_API_URL) is not configured in Netlify environment variables. Please set VITE_API_URL in Netlify Site Settings to your deployed Render URL.'
+      );
+      configError.isConfigError = true;
+      throw configError;
+    }
+
     const data = await response.json().catch(() => null);
 
     if (!response.ok) {

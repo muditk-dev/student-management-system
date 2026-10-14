@@ -9,6 +9,11 @@ const {
   getDashboardStats,
 } = require('../controllers/studentController');
 
+const checkDbConnection = require('../middleware/checkDbConnection');
+
+// Ensure database connection is live before processing student queries
+router.use(checkDbConnection);
+
 // Dashboard statistics
 router.get('/stats', getDashboardStats);
 
