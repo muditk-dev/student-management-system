@@ -1,0 +1,24 @@
+{
+  "name": "student-information-management-system",
+  "version": "1.0.0",
+  "description": "Student Information Management System - College Mini Project (React + Node/Express + MongoDB Atlas)",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "backend": "npm --prefix backend run dev",
+    "backend:start": "npm --prefix backend start",
+    "frontend": "npm --prefix frontend run dev",
+    "seed": "npm --prefix backend run seed",
+    "test:backend": "npm --prefix backend test",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "keywords": [
+    "student-management",
+    "react",
+    "express",
+    "mongodb",
+    "mern",
+    "college-project"
+  ],
+  "author": "College Student",
+  "license": "MIT"
+}
