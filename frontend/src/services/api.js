@@ -1,9 +1,18 @@
 // Centralized API Service for Student Information Management System
 // Uses VITE_API_URL in production (Netlify -> Render) or falls back to local proxy/localhost:5000
 
-const API_BASE = import.meta.env.VITE_API_URL 
-  ? import.meta.env.VITE_API_URL.replace(/\/$/, '') 
+const rawApiUrl = import.meta.env.VITE_API_URL 
+  ? import.meta.env.VITE_API_URL.trim().replace(/\/$/, '') 
   : '';
+
+// In production, prevent silent reliance on localhost backend
+if (import.meta.env.PROD && rawApiUrl && (rawApiUrl.includes('localhost') || rawApiUrl.includes('127.0.0.1'))) {
+  console.warn(
+    '[EduPulse Config Warning] VITE_API_URL is configured to localhost in a production build. External users will not be able to connect unless pointed to your deployed Render URL.'
+  );
+}
+
+const API_BASE = rawApiUrl;
 
 // Helper for standardized fetch calls with friendly error handling
 async function request(endpoint, options = {}) {
@@ -17,6 +26,8 @@ async function request(endpoint, options = {}) {
   };
 
   try {
+    const response = await fetch(url, config);
+
     const contentType = response.headers.get('content-type') || '';
     if (contentType.includes('text/html') && url.startsWith('/api')) {
       const configError = new Error(
