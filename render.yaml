@@ -1,12 +1,13 @@
 services:
   - type: web
     name: student-management-api
-    runtime: node
+    env: node
     plan: free
     rootDir: backend
     buildCommand: npm install
     startCommand: node server.js
     healthCheckPath: /api/health
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production

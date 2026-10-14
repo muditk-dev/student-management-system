@@ -212,7 +212,7 @@ npm run install:all
 2. Open `backend/.env` and insert your MongoDB Atlas URI:
    ```env
    PORT=5000
-   MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/student_db?retryWrites=true&w=majority
+   MONGODB_URI=mongodb+srv://edupulse_app:<password>@cluster0.m4s4rqe.mongodb.net/student_mgmt_db?retryWrites=true&w=majority
    FRONTEND_URL=http://localhost:5173
    NODE_ENV=development
    ```
@@ -267,13 +267,9 @@ Follow this beginner walkthrough to obtain your MongoDB Atlas connection string:
    - In the left sidebar, click **Deployments** → **Database**.
    - Click the **Connect** button next to your cluster.
    - Choose **Drivers** (Node.js).
-   - Copy the connection string. It will look like:
+   - Copy the connection string. For your configured cluster and user:
      ```
-     mongodb+srv://admin_user:<db_password>@cluster0.abcde.mongodb.net/?retryWrites=true&w=majority
-     ```
-   - Replace `<db_password>` with your database user password and add a database name (e.g., `student_db` before the `?`):
-     ```
-     mongodb+srv://admin_user:mySecretPass123@cluster0.abcde.mongodb.net/student_db?retryWrites=true&w=majority
+     mongodb+srv://edupulse_app:<password>@cluster0.m4s4rqe.mongodb.net/student_mgmt_db?retryWrites=true&w=majority
      ```
 
 ---
