@@ -10,6 +10,15 @@
 
 ---
 
+## 🌐 Live Production Deployments
+
+- **Frontend (Netlify):** [https://edupulse-student-management.netlify.app](https://edupulse-student-management.netlify.app)
+- **Backend API (Render):** [https://student-management-api-9ccy.onrender.com](https://student-management-api-9ccy.onrender.com)
+- **API Health Check:** [https://student-management-api-9ccy.onrender.com/api/health](https://student-management-api-9ccy.onrender.com/api/health)
+- **Database:** MongoDB Atlas (Cloud NoSQL Cluster, `student_mgmt_db`)
+
+---
+
 ## 📋 Table of Contents
 1. [Project Overview & Architecture](#-project-overview--architecture)
 2. [Tech Stack](#-tech-stack)
@@ -409,20 +418,11 @@ Use this checklist during your viva, examination, or evaluation:
 
 ---
 
-## 📌 Manual Steps You Must Perform
+## 📌 Cloud Deployment & Production Status
 
-Because automated assistants do not have access to your personal cloud accounts or credit/billing dashboards, you must perform these few external account actions yourself:
+The three-tier architecture is fully provisioned and verified:
+- **Tier 1 (Presentation):** React + Vite SPA deployed on Netlify at [https://edupulse-student-management.netlify.app](https://edupulse-student-management.netlify.app).
+- **Tier 2 (Application API):** Node.js + Express REST API deployed on Render at [https://student-management-api-9ccy.onrender.com](https://student-management-api-9ccy.onrender.com), with auto-deploy enabled on branch `main`.
+- **Tier 3 (Data):** MongoDB Atlas Cloud NoSQL cluster (`cluster0.m4s4rqe.mongodb.net`), using database `student_mgmt_db` and dedicated user `edupulse_app`.
+- **CORS & Environment:** Backend accepts requests from the Netlify domain, and Netlify environment variable `VITE_API_URL` routes all requests to Render.
 
-1. **MongoDB Atlas Account**:
-   - Log into [cloud.mongodb.com](https://cloud.mongodb.com).
-   - Create your database user and whitelist IP `0.0.0.0/0`.
-   - Copy your connection string into `backend/.env`.
-2. **GitHub Repository**:
-   - Create a new repository on your GitHub account (e.g., `student-management-system`).
-   - Push this workspace to your GitHub repository.
-3. **Render Deployment (Backend)**:
-   - Create a Web Service connected to your repository with root directory `backend`.
-   - Set environment variables `MONGODB_URI` and `FRONTEND_URL`.
-4. **Netlify Deployment (Frontend)**:
-   - Create a new Netlify site connected to your repository with base directory `frontend`.
-   - Set environment variable `VITE_API_URL` to your live Render backend URL.
