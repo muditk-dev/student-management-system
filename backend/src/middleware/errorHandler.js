@@ -36,8 +36,24 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
-  // Fallback to 500 Internal Server Error
-  const statusCode = error.statusCode || res.statusCode !== 200 ? res.statusCode : 500;
+  // Malformed JSON SyntaxError from express.json()
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    return res.status(400).json({
+      success: false,
+      message: 'Malformed JSON payload: Please verify request body syntax',
+    });
+  }
+
+  // CORS Blocked Origin
+  if (err.message && err.message.includes('not allowed by CORS policy')) {
+    return res.status(403).json({
+      success: false,
+      message: err.message,
+    });
+  }
+
+  // Fallback to error status code or 500
+  const statusCode = err.status || err.statusCode || (res.statusCode >= 400 ? res.statusCode : 500);
   res.status(statusCode).json({
     success: false,
     message: error.message || 'Internal Server Error. Please try again later.',
