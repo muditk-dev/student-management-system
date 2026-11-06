@@ -23,8 +23,8 @@ router.get('/', (req, res) => {
     environment: process.env.NODE_ENV || 'development',
   };
 
-  const httpStatus = dbStatus.isConnected ? 200 : 503;
-  res.status(httpStatus).json(healthData);
+  // Always return 200 so cloud orchestrators (Render) keep the container alive and report accurate status
+  res.status(200).json(healthData);
 });
 
 module.exports = router;
