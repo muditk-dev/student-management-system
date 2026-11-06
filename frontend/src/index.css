@@ -4,10 +4,10 @@
    ========================================================= */
 
 :root {
-  --primary: #1e40af;
-  --primary-hover: #1d4ed8;
-  --primary-light: #eff6ff;
-  --primary-border: #bfdbfe;
+  --primary: #059669;
+  --primary-hover: #047857;
+  --primary-light: #ecfdf5;
+  --primary-border: #a7f3d0;
   
   --secondary: #475569;
   --secondary-hover: #334155;
@@ -25,14 +25,14 @@
   --warning-bg: #fef3c7;
   --warning-border: #fcd34d;
   
-  --bg-main: #f8fafc;
+  --bg-main: #f0fdf4;
   --bg-card: #ffffff;
-  --bg-sidebar: #0f172a;
-  --bg-sidebar-hover: #1e293b;
-  --bg-sidebar-active: #2563eb;
+  --bg-sidebar: #064e3b;
+  --bg-sidebar-hover: #065f46;
+  --bg-sidebar-active: #10b981;
   
-  --text-main: #0f172a;
-  --text-muted: #64748b;
+  --text-main: #064e3b;
+  --text-muted: #047857;
   --text-subtle: #94a3b8;
   --text-inverse: #ffffff;
   
